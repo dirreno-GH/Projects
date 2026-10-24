@@ -1,8 +1,8 @@
 {
   "channel": "stable",
-  "version": "0.3.92",
+  "version": "0.3.93",
   "downloadUrl": "https://github.com/dirreno-GH/Laminari-Launcher/raw/refs/heads/ui/laminari-branding-step-1/release/LaminariInstaller.exe",
-  "sha256": "ffdd5c352a4473ea05770de97aedb6b9434d4093caf2bdaa8f2c70f425f8d1d3",
-  "size": 174876353,
-  "notes": "Тест автообновления Laminari. Проверяем окно «Обновить / Позже» и установку новой версии."
+  "sha256": "b8d6023c719130a4d8dd730af24af56455f1ac5d4f6fe174da354c7c4177d389",
+  "size": 174882769,
+  "notes": "Тест автообновления: основной интерфейс переведён на Segoe UI Variable Text."
 }
