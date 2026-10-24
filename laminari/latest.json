@@ -1,0 +1,8 @@
+{
+  "channel": "stable",
+  "version": "0.3.90",
+  "downloadUrl": "https://github.com/dirreno-GH/Laminari-Launcher/raw/refs/heads/ui/laminari-branding-step-1/release/LaminariInstaller.exe",
+  "sha256": "17892a26a916f3e583f028d1a4951b5ad06db9dd5501ba2a0dfd347aab41742d",
+  "size": 174868565,
+  "notes": "Текущая стабильная версия Laminari."
+}
