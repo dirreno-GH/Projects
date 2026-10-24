@@ -1,8 +1,8 @@
 {
   "channel": "stable",
-  "version": "0.3.90",
+  "version": "0.3.91",
   "downloadUrl": "https://github.com/dirreno-GH/Laminari-Launcher/raw/refs/heads/ui/laminari-branding-step-1/release/LaminariInstaller.exe",
-  "sha256": "17892a26a916f3e583f028d1a4951b5ad06db9dd5501ba2a0dfd347aab41742d",
-  "size": 174868565,
-  "notes": "Текущая стабильная версия Laminari."
+  "sha256": "23883bde0b3bd330f0f64cfb4b1d62e2b61949a7c5411a29fd36553790a25f47",
+  "size": 174871300,
+  "notes": "Добавлено автообновление Laminari: окно «Обновить / Позже», проверка SHA-256 и автоматический перезапуск после установки."
 }
