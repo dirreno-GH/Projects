@@ -2,171 +2,118 @@
 <html lang="ru"> <!-- Указываем русский язык страницы. -->
 <head> <!-- Открываем служебную часть страницы. -->
 <meta charset="UTF-8"> <!-- Включаем корректное отображение русского текста. -->
-<meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Делаем сайт адаптивным для телефонов и ПК. -->
-<meta name="theme-color" content="#090b10"> <!-- Задаём цвет интерфейса браузера на мобильных устройствах. -->
-<title>Laminari Visuals — Minecraft 1.21.1</title> <!-- Задаём название вкладки браузера. -->
-<meta name="description" content="Laminari Visuals — визуальный клиент для Minecraft 1.21.1 Fabric с ViewModel, SwingAnimations и будущими HUD-модулями."> <!-- Добавляем описание сайта для поисковиков. -->
-<style> /* Открываем встроенные стили сайта. */
-:root { /* Создаём общие переменные цветов. */
-  --bg:#090b10; /* Задаём основной фон страницы. */
-  --panel:#10131a; /* Задаём фон карточек и панелей. */
-  --panel-2:#151923; /* Задаём второй уровень тёмных поверхностей. */
-  --border:#242a38; /* Задаём цвет тонких границ. */
-  --text:#f4f6fb; /* Задаём основной светлый текст. */
-  --muted:#9299aa; /* Задаём приглушённый текст. */
-  --accent:#8468ff; /* Задаём фирменный фиолетовый акцент. */
-  --accent-2:#b29cff; /* Задаём светлый вариант акцента. */
-  --ok:#63d89c; /* Задаём зелёный цвет статуса. */
-} /* Закрываем список переменных. */
+<meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Делаем сайт адаптивным. -->
+<meta name="theme-color" content="#090b10"> <!-- Задаём цвет браузера на мобильных устройствах. -->
+<title>Laminari Visuals — Minecraft 1.21.1</title> <!-- Задаём название вкладки. -->
+<meta name="description" content="Официальная страница Laminari Visuals для Minecraft 1.21.1 Fabric."> <!-- Добавляем описание сайта. -->
+<style> /* Открываем стили страницы. */
+:root { --bg:#090b10; --panel:#11141b; --border:#252a37; --text:#f6f7fb; --muted:#9298a8; --accent:#8064ff; --accent2:#b7a5ff; --ok:#60d89b; } /* Задаём фирменные цвета Laminari. */
 * { box-sizing:border-box; } /* Учитываем границы внутри размеров элементов. */
-html { scroll-behavior:smooth; } /* Включаем плавную прокрутку по якорям. */
-body { margin:0; font-family:Inter,Segoe UI,Arial,sans-serif; background:radial-gradient(circle at 72% 10%,rgba(132,104,255,.14),transparent 30%),var(--bg); color:var(--text); } /* Оформляем тело страницы. */
+html { scroll-behavior:smooth; } /* Включаем плавную прокрутку. */
+body { margin:0; font-family:Inter,Segoe UI,Arial,sans-serif; color:var(--text); background:radial-gradient(circle at 70% 5%,rgba(128,100,255,.16),transparent 32%),var(--bg); } /* Оформляем фон и основной шрифт. */
 a { color:inherit; text-decoration:none; } /* Убираем стандартное подчёркивание ссылок. */
-button { font:inherit; } /* Наследуем шрифт у кнопок. */
-.shell { width:min(1180px,calc(100% - 32px)); margin:0 auto; } /* Ограничиваем ширину содержимого и центрируем его. */
-.nav { position:sticky; top:0; z-index:20; backdrop-filter:blur(18px); background:rgba(9,11,16,.78); border-bottom:1px solid rgba(255,255,255,.06); } /* Создаём липкую полупрозрачную верхнюю панель. */
-.nav-inner { min-height:72px; display:flex; align-items:center; justify-content:space-between; gap:24px; } /* Раскладываем элементы навигации по горизонтали. */
-.brand { display:flex; align-items:center; gap:12px; font-weight:800; letter-spacing:.04em; } /* Оформляем блок логотипа и названия. */
-.logo { width:40px; height:40px; border-radius:13px; display:grid; place-items:center; background:linear-gradient(145deg,var(--accent),#5b3fd8); box-shadow:0 8px 30px rgba(132,104,255,.22); } /* Создаём фирменный квадратный логотип. */
-.links { display:flex; gap:24px; color:var(--muted); font-size:14px; } /* Оформляем ссылки верхнего меню. */
-.links a:hover { color:var(--text); } /* Осветляем ссылку при наведении. */
-.nav-button { padding:11px 16px; border:1px solid var(--border); border-radius:12px; background:var(--panel); color:var(--text); } /* Создаём кнопку справа в навигации. */
-.hero { padding:92px 0 72px; display:grid; grid-template-columns:1.08fr .92fr; gap:54px; align-items:center; } /* Создаём двухколоночный первый экран. */
-.eyebrow { display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border:1px solid var(--border); border-radius:999px; background:rgba(16,19,26,.8); color:var(--muted); font-size:13px; } /* Оформляем маленькую метку версии. */
-.dot { width:8px; height:8px; border-radius:50%; background:var(--ok); box-shadow:0 0 16px rgba(99,216,156,.5); } /* Создаём зелёный индикатор разработки. */
-h1 { margin:22px 0 18px; font-size:clamp(44px,7vw,82px); line-height:.94; letter-spacing:-.055em; } /* Оформляем крупный главный заголовок. */
-.gradient { background:linear-gradient(90deg,#ffffff 5%,var(--accent-2) 72%); -webkit-background-clip:text; background-clip:text; color:transparent; } /* Создаём градиентную часть заголовка. */
-.lead { max-width:680px; color:var(--muted); font-size:18px; line-height:1.7; } /* Оформляем описание под заголовком. */
-.actions { display:flex; flex-wrap:wrap; gap:12px; margin-top:30px; } /* Располагаем главные кнопки рядом. */
-.primary,.secondary { min-height:50px; padding:0 20px; border-radius:14px; border:1px solid transparent; display:inline-flex; align-items:center; justify-content:center; cursor:pointer; transition:.18s ease; } /* Задаём общие стили кнопок. */
-.primary { background:var(--accent); color:white; font-weight:800; box-shadow:0 12px 38px rgba(132,104,255,.22); } /* Оформляем главную фиолетовую кнопку. */
-.primary:hover { transform:translateY(-2px); background:#9178ff; } /* Добавляем реакцию главной кнопки на наведение. */
+.shell { width:min(1160px,calc(100% - 32px)); margin:0 auto; } /* Ограничиваем ширину содержимого. */
+.nav { position:sticky; top:0; z-index:10; border-bottom:1px solid rgba(255,255,255,.06); background:rgba(9,11,16,.82); backdrop-filter:blur(18px); } /* Создаём верхнюю панель. */
+.nav-inner { min-height:72px; display:flex; align-items:center; justify-content:space-between; gap:20px; } /* Раскладываем содержимое панели. */
+.brand { display:flex; align-items:center; gap:12px; font-weight:800; letter-spacing:.04em; } /* Оформляем название проекта. */
+.logo { width:40px; height:40px; border-radius:13px; display:grid; place-items:center; background:linear-gradient(145deg,var(--accent),#5c42d9); box-shadow:0 10px 30px rgba(128,100,255,.22); } /* Создаём фирменный логотип. */
+.nav-links { display:flex; align-items:center; gap:22px; color:var(--muted); font-size:14px; } /* Оформляем ссылки навигации. */
+.nav-links a:hover { color:var(--text); } /* Осветляем ссылки при наведении. */
+.hero { min-height:620px; padding:92px 0 76px; display:grid; grid-template-columns:1.08fr .92fr; align-items:center; gap:54px; } /* Создаём первый экран. */
+.badge { display:inline-flex; align-items:center; gap:9px; padding:8px 12px; border:1px solid var(--border); border-radius:999px; background:rgba(17,20,27,.82); color:var(--muted); font-size:13px; } /* Создаём метку версии. */
+.dot { width:8px; height:8px; border-radius:50%; background:var(--ok); box-shadow:0 0 14px rgba(96,216,155,.5); } /* Создаём зелёный индикатор. */
+h1 { margin:22px 0 18px; font-size:clamp(48px,7vw,84px); line-height:.94; letter-spacing:-.055em; } /* Оформляем главный заголовок. */
+.gradient { background:linear-gradient(90deg,#fff,var(--accent2)); -webkit-background-clip:text; background-clip:text; color:transparent; } /* Добавляем градиентный текст. */
+.lead { max-width:670px; margin:0; color:var(--muted); font-size:18px; line-height:1.7; } /* Оформляем описание проекта. */
+.actions { display:flex; flex-wrap:wrap; gap:12px; margin-top:30px; } /* Размещаем кнопки рядом. */
+.primary,.secondary { min-height:50px; padding:0 20px; border-radius:14px; display:inline-flex; align-items:center; justify-content:center; border:1px solid transparent; transition:.18s ease; } /* Задаём общий стиль кнопок. */
+.primary { background:var(--accent); color:#fff; font-weight:800; box-shadow:0 12px 38px rgba(128,100,255,.2); } /* Оформляем главную кнопку. */
+.primary:hover { transform:translateY(-2px); background:#8e76ff; } /* Добавляем эффект наведения на главную кнопку. */
 .secondary { background:var(--panel); border-color:var(--border); color:var(--text); } /* Оформляем вторичную кнопку. */
-.secondary:hover { border-color:#3b4357; transform:translateY(-2px); } /* Добавляем реакцию вторичной кнопки на наведение. */
-.note { margin-top:16px; color:#666d7c; font-size:12px; } /* Оформляем небольшую подпись под кнопками. */
-.preview { border:1px solid var(--border); border-radius:26px; padding:18px; background:linear-gradient(180deg,rgba(21,25,35,.96),rgba(12,14,20,.96)); box-shadow:0 32px 90px rgba(0,0,0,.34); } /* Создаём макет интерфейса Visuals справа. */
-.preview-top { display:flex; justify-content:space-between; align-items:center; padding:6px 4px 17px; color:var(--muted); font-size:13px; } /* Оформляем верх макета. */
-.window-dots { display:flex; gap:6px; } /* Располагаем декоративные точки окна. */
-.window-dots i { width:8px; height:8px; border-radius:50%; background:#353b4a; display:block; } /* Оформляем каждую точку окна. */
-.module { padding:16px; border:1px solid var(--border); background:var(--panel); border-radius:17px; margin-top:10px; } /* Создаём карточку модуля в макете. */
-.module-head { display:flex; align-items:center; justify-content:space-between; gap:18px; } /* Раскладываем название и переключатель модуля. */
-.module strong { display:block; font-size:15px; } /* Оформляем название модуля. */
-.module small { display:block; color:var(--muted); margin-top:5px; } /* Оформляем описание модуля. */
-.switch { width:46px; height:26px; border:0; border-radius:999px; padding:3px; background:#303646; cursor:pointer; } /* Создаём интерактивный переключатель. */
-.switch span { display:block; width:20px; height:20px; border-radius:50%; background:#868da0; transition:.2s ease; } /* Создаём кружок переключателя. */
-.switch.on { background:rgba(132,104,255,.34); } /* Меняем фон включённого переключателя. */
-.switch.on span { transform:translateX(20px); background:var(--accent-2); } /* Перемещаем кружок включённого переключателя. */
-.range-row { display:grid; grid-template-columns:80px 1fr 42px; gap:12px; align-items:center; margin-top:16px; color:var(--muted); font-size:12px; } /* Создаём строку демонстрационного слайдера. */
-.track { height:5px; border-radius:99px; background:#292f3d; overflow:hidden; } /* Создаём фон полосы слайдера. */
-.track b { display:block; height:100%; width:64%; background:linear-gradient(90deg,var(--accent),var(--accent-2)); } /* Показываем заполненную часть слайдера. */
-.section { padding:76px 0; } /* Задаём вертикальные отступы секций. */
-.section-title { max-width:760px; margin-bottom:34px; } /* Ограничиваем ширину заголовка секции. */
-.section h2 { margin:0 0 12px; font-size:clamp(30px,4vw,48px); letter-spacing:-.035em; } /* Оформляем заголовки секций. */
-.section p { margin:0; color:var(--muted); line-height:1.65; } /* Оформляем описания секций. */
-.grid { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; } /* Создаём сетку карточек возможностей. */
-.card { min-height:220px; padding:22px; border:1px solid var(--border); background:linear-gradient(180deg,var(--panel),#0d1016); border-radius:20px; } /* Оформляем карточку функции. */
-.icon { width:42px; height:42px; border-radius:13px; display:grid; place-items:center; background:rgba(132,104,255,.13); color:var(--accent-2); font-weight:900; margin-bottom:34px; } /* Создаём небольшую иконку карточки. */
-.card h3 { margin:0 0 10px; font-size:18px; } /* Оформляем название функции. */
-.card p { font-size:14px; } /* Делаем описание функции компактнее. */
-.tag { display:inline-block; margin-top:16px; padding:6px 9px; border-radius:8px; background:#171b25; color:#7e8596; font-size:11px; } /* Создаём подпись статуса функции. */
-.ready { color:#9ce8bd; } /* Выделяем готовые модули зелёным оттенком. */
-.version-box { display:grid; grid-template-columns:1.2fr .8fr; gap:16px; padding:26px; border:1px solid var(--border); border-radius:22px; background:var(--panel); } /* Создаём секцию совместимости. */
-.specs { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; } /* Создаём три компактных параметра версии. */
-.spec { padding:16px; border-radius:15px; background:var(--panel-2); } /* Оформляем один параметр версии. */
-.spec span { display:block; color:#697081; font-size:10px; text-transform:uppercase; letter-spacing:.09em; } /* Оформляем подпись параметра. */
-.spec b { display:block; margin-top:7px; font-size:15px; } /* Оформляем значение параметра. */
-.faq { display:grid; gap:10px; } /* Создаём вертикальный список FAQ. */
-details { border:1px solid var(--border); border-radius:16px; background:var(--panel); padding:17px 18px; } /* Оформляем раскрывающийся вопрос. */
-summary { cursor:pointer; font-weight:700; } /* Делаем заголовок вопроса кликабельным. */
-details p { margin-top:12px!important; font-size:14px; } /* Оформляем ответ внутри FAQ. */
-footer { padding:36px 0 52px; border-top:1px solid rgba(255,255,255,.06); color:#686f7f; font-size:13px; } /* Оформляем нижнюю часть сайта. */
-@media (max-width:900px) { /* Включаем стили для планшетов и узких экранов. */
-  .hero { grid-template-columns:1fr; padding-top:64px; } /* Переводим первый экран в одну колонку. */
-  .grid { grid-template-columns:repeat(2,1fr); } /* Показываем функции по две карточки в ряд. */
-  .version-box { grid-template-columns:1fr; } /* Переводим блок версии в одну колонку. */
-  .links { display:none; } /* Скрываем длинное меню на маленьких экранах. */
-} /* Закрываем планшетные стили. */
-@media (max-width:580px) { /* Включаем стили для телефонов. */
-  .shell { width:min(100% - 22px,1180px); } /* Уменьшаем боковые отступы на телефоне. */
-  .hero { padding:46px 0 54px; gap:36px; } /* Уменьшаем отступы первого экрана. */
-  .grid { grid-template-columns:1fr; } /* Показываем карточки функций по одной. */
-  .specs { grid-template-columns:1fr; } /* Показываем параметры версии вертикально. */
-  .nav-button { display:none; } /* Убираем дополнительную кнопку из узкой навигации. */
-} /* Закрываем мобильные стили. */
-</style> <!-- Закрываем встроенные стили сайта. -->
-</head> <!-- Закрываем служебную часть страницы. -->
+.secondary:hover { transform:translateY(-2px); border-color:#3b4252; } /* Добавляем эффект наведения на вторичную кнопку. */
+.note { margin-top:14px; color:#696f7e; font-size:12px; } /* Оформляем подпись статуса. */
+.product-card { min-height:390px; padding:30px; border:1px solid var(--border); border-radius:28px; background:linear-gradient(180deg,rgba(18,21,29,.98),rgba(12,14,20,.98)); box-shadow:0 34px 90px rgba(0,0,0,.34); display:flex; flex-direction:column; justify-content:space-between; } /* Создаём информационную карточку продукта без настроек. */
+.product-logo { width:92px; height:92px; border-radius:25px; display:grid; place-items:center; background:#1a1d27; color:var(--accent2); font-size:30px; font-weight:900; } /* Создаём крупный логотип в карточке. */
+.product-card h2 { margin:24px 0 10px; font-size:30px; letter-spacing:-.03em; } /* Оформляем название продукта. */
+.product-card p { margin:0; color:var(--muted); line-height:1.65; } /* Оформляем описание карточки. */
+.specs { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-top:28px; } /* Создаём сетку характеристик. */
+.spec { padding:15px; border-radius:15px; background:#171a23; } /* Оформляем характеристику. */
+.spec span { display:block; color:#6e7585; font-size:10px; text-transform:uppercase; letter-spacing:.09em; } /* Оформляем подпись характеристики. */
+.spec b { display:block; margin-top:7px; font-size:15px; } /* Оформляем значение характеристики. */
+.section { padding:74px 0; } /* Добавляем отступы секциям. */
+.section h2 { margin:0 0 14px; font-size:clamp(31px,4vw,48px); letter-spacing:-.035em; } /* Оформляем заголовок секции. */
+.section p { margin:0; color:var(--muted); line-height:1.7; } /* Оформляем текст секции. */
+.info-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:30px; } /* Создаём сетку информационных карточек. */
+.info { min-height:180px; padding:22px; border:1px solid var(--border); border-radius:20px; background:linear-gradient(180deg,var(--panel),#0d1016); } /* Оформляем информационную карточку. */
+.info .number { width:38px; height:38px; display:grid; place-items:center; border-radius:12px; background:rgba(128,100,255,.13); color:var(--accent2); font-weight:800; margin-bottom:28px; } /* Создаём номер шага. */
+.info h3 { margin:0 0 9px; font-size:18px; } /* Оформляем заголовок карточки. */
+.info p { font-size:14px; } /* Уменьшаем текст карточки. */
+.download-box { padding:30px; border:1px solid var(--border); border-radius:24px; background:var(--panel); display:flex; align-items:center; justify-content:space-between; gap:24px; } /* Создаём секцию загрузки. */
+.download-box strong { display:block; font-size:23px; margin-bottom:8px; } /* Оформляем заголовок загрузки. */
+.status { color:var(--muted); line-height:1.6; } /* Оформляем статус разработки. */
+.disabled { min-height:48px; padding:0 19px; border-radius:13px; display:inline-flex; align-items:center; justify-content:center; background:#222634; color:#747b8c; font-weight:700; cursor:not-allowed; white-space:nowrap; } /* Создаём честную неактивную кнопку загрузки. */
+.faq { display:grid; gap:10px; margin-top:30px; } /* Создаём список FAQ. */
+details { padding:18px; border:1px solid var(--border); border-radius:16px; background:var(--panel); } /* Оформляем вопрос FAQ. */
+summary { cursor:pointer; font-weight:700; } /* Делаем вопрос кликабельным. */
+details p { margin-top:12px!important; font-size:14px; } /* Оформляем ответ FAQ. */
+footer { padding:36px 0 52px; border-top:1px solid rgba(255,255,255,.06); color:#6d7483; font-size:13px; } /* Оформляем нижнюю часть сайта. */
+@media (max-width:900px) { .hero { grid-template-columns:1fr; padding-top:62px; } .info-grid { grid-template-columns:1fr; } } /* Перестраиваем сайт для планшетов. */
+@media (max-width:620px) { .shell { width:min(100% - 22px,1160px); } .nav-links { display:none; } .hero { min-height:auto; padding:46px 0 54px; } .specs { grid-template-columns:1fr; } .download-box { align-items:flex-start; flex-direction:column; } } /* Перестраиваем сайт для телефонов. */
+</style> <!-- Закрываем стили страницы. -->
+</head> <!-- Закрываем служебную часть. -->
 <body> <!-- Открываем видимую часть сайта. -->
 <nav class="nav"> <!-- Создаём верхнюю навигацию. -->
   <div class="shell nav-inner"> <!-- Ограничиваем ширину навигации. -->
-    <a class="brand" href="#top"><span class="logo">LV</span><span>LAMINARI VISUALS</span></a> <!-- Добавляем логотип и название проекта. -->
-    <div class="links"><a href="#features">Возможности</a><a href="#version">Версия</a><a href="#faq">FAQ</a></div> <!-- Добавляем ссылки на основные секции. -->
-    <a class="nav-button" href="#features">Открыть визуалы</a> <!-- Добавляем дополнительную кнопку навигации. -->
+    <a class="brand" href="#top"><span class="logo">LV</span><span>LAMINARI VISUALS</span></a> <!-- Добавляем логотип и название. -->
+    <div class="nav-links"><a href="#about">О проекте</a><a href="#download">Скачать</a><a href="#faq">FAQ</a></div> <!-- Добавляем обычные ссылки сайта без настроек модулей. -->
   </div> <!-- Закрываем контейнер навигации. -->
-</nav> <!-- Закрываем верхнюю навигацию. -->
-<main id="top"> <!-- Открываем главное содержимое сайта. -->
-  <section class="shell hero"> <!-- Создаём первый экран сайта. -->
-    <div> <!-- Открываем левую часть первого экрана. -->
-      <div class="eyebrow"><span class="dot"></span>Minecraft 1.21.1 · Fabric</div> <!-- Показываем версию и загрузчик. -->
-      <h1>Твои визуалы.<br><span class="gradient">Твой стиль.</span></h1> <!-- Показываем главный слоган. -->
-      <p class="lead">Laminari Visuals — собственный визуальный клиент для Minecraft. Начинаем с рабочего ViewModel и SwingAnimations, а дальше добавляем HUD, эффекты и профили настроек.</p> <!-- Кратко объясняем идею проекта. -->
-      <div class="actions"> <!-- Открываем блок основных кнопок. -->
-        <a class="primary" href="#features">Смотреть возможности</a> <!-- Добавляем кнопку перехода к функциям. -->
-        <a class="secondary" href="#version">Minecraft 1.21.1</a> <!-- Добавляем кнопку перехода к совместимости. -->
-      </div> <!-- Закрываем блок кнопок. -->
-      <div class="note">Первая версия находится в разработке. Публичная загрузка клиента появится после первой стабильной сборки.</div> <!-- Честно сообщаем текущий статус проекта. -->
-    </div> <!-- Закрываем левую часть первого экрана. -->
-    <div class="preview" aria-label="Макет интерфейса Laminari Visuals"> <!-- Создаём визуальный макет будущего меню модулей. -->
-      <div class="preview-top"><span>Visual modules</span><span class="window-dots"><i></i><i></i><i></i></span></div> <!-- Создаём верхнюю строку макета. -->
-      <div class="module"> <!-- Открываем карточку ViewModel. -->
-        <div class="module-head"><div><strong>ViewModel</strong><small>Позиция, масштаб и поворот руки</small></div><button class="switch on" type="button" aria-label="Переключить ViewModel"><span></span></button></div> <!-- Добавляем заголовок и переключатель ViewModel. -->
-        <div class="range-row"><span>Scale</span><div class="track"><b></b></div><span>1.05</span></div> <!-- Добавляем демонстрационный параметр масштаба. -->
-        <div class="range-row"><span>Position X</span><div class="track"><b style="width:52%"></b></div><span>0.08</span></div> <!-- Добавляем демонстрационный параметр позиции. -->
-      </div> <!-- Закрываем карточку ViewModel. -->
-      <div class="module"> <!-- Открываем карточку SwingAnimations. -->
-        <div class="module-head"><div><strong>SwingAnimations</strong><small>Laminari · Swipe · Stab</small></div><button class="switch on" type="button" aria-label="Переключить SwingAnimations"><span></span></button></div> <!-- Добавляем заголовок и переключатель анимаций. -->
-      </div> <!-- Закрываем карточку SwingAnimations. -->
-      <div class="module"> <!-- Открываем карточку будущего HUD. -->
-        <div class="module-head"><div><strong>Custom HUD</strong><small>Следующий этап разработки</small></div><button class="switch" type="button" aria-label="Переключить HUD"><span></span></button></div> <!-- Добавляем демонстрационный переключатель HUD. -->
-      </div> <!-- Закрываем карточку HUD. -->
-    </div> <!-- Закрываем макет интерфейса. -->
-  </section> <!-- Закрываем первый экран. -->
-  <section class="section shell" id="features"> <!-- Создаём секцию возможностей. -->
-    <div class="section-title"><h2>Основа Laminari Visuals</h2><p>Проект строится модульно: каждая функция включается отдельно и позже получит собственные настройки в ClickGUI.</p></div> <!-- Добавляем заголовок секции возможностей. -->
-    <div class="grid"> <!-- Открываем сетку карточек функций. -->
-      <article class="card"><div class="icon">V</div><h3>ViewModel</h3><p>Настройка положения предмета, масштаба и вращения по трём осям.</p><span class="tag ready">Первый модуль</span></article> <!-- Описываем ViewModel. -->
-      <article class="card"><div class="icon">S</div><h3>SwingAnimations</h3><p>Собственные анимации удара: Laminari, Swipe и Stab с плавным движением.</p><span class="tag ready">Первый модуль</span></article> <!-- Описываем SwingAnimations. -->
-      <article class="card"><div class="icon">H</div><h3>Custom HUD</h3><p>FPS, CPS, броня, эффекты и свободное размещение элементов интерфейса.</p><span class="tag">Запланировано</span></article> <!-- Описываем будущий HUD. -->
-      <article class="card"><div class="icon">P</div><h3>Profiles</h3><p>Отдельные наборы визуальных настроек для разных серверов и режимов.</p><span class="tag">Запланировано</span></article> <!-- Описываем будущие профили. -->
-    </div> <!-- Закрываем сетку возможностей. -->
-  </section> <!-- Закрываем секцию возможностей. -->
-  <section class="section shell" id="version"> <!-- Создаём секцию совместимости. -->
-    <div class="version-box"> <!-- Открываем большую карточку версии. -->
-      <div><h2>Сделано под 1.21.1</h2><p>Первая стабильная ветка Laminari Visuals ориентирована на Minecraft 1.21.1 и Fabric. Лаунчер позже сможет устанавливать нужные компоненты автоматически.</p></div> <!-- Объясняем целевую платформу. -->
-      <div class="specs"> <!-- Открываем список параметров версии. -->
+</nav> <!-- Закрываем навигацию. -->
+<main id="top"> <!-- Открываем основное содержимое. -->
+  <section class="shell hero"> <!-- Создаём главный экран. -->
+    <div> <!-- Открываем текстовую часть. -->
+      <div class="badge"><span class="dot"></span>Minecraft 1.21.1 · Fabric</div> <!-- Показываем целевую версию. -->
+      <h1>Laminari<br><span class="gradient">Visuals.</span></h1> <!-- Показываем название проекта. -->
+      <p class="lead">Собственный визуальный клиент для Minecraft с отдельным лаунчером. Сайт нужен для информации, загрузки и новостей — все настройки визуалов будут только внутри Minecraft.</p> <!-- Объясняем правильное назначение сайта. -->
+      <div class="actions"><a class="primary" href="#download">Скачать</a><a class="secondary" href="#about">О проекте</a></div> <!-- Добавляем обычные кнопки сайта. -->
+      <div class="note">Первая стабильная сборка ещё готовится.</div> <!-- Показываем текущий статус. -->
+    </div> <!-- Закрываем текстовую часть. -->
+    <div class="product-card"> <!-- Создаём статичную карточку продукта без переключателей и слайдеров. -->
+      <div> <!-- Открываем верх карточки. -->
+        <div class="product-logo">LV</div> <!-- Показываем логотип продукта. -->
+        <h2>Laminari Visuals</h2> <!-- Показываем название продукта. -->
+        <p>Отдельный лаунчер запускает клиент. Включение и настройка визуальных модулей выполняются уже внутри игры.</p> <!-- Объясняем назначение лаунчера и игры. -->
+      </div> <!-- Закрываем верх карточки. -->
+      <div class="specs"> <!-- Создаём блок технической информации. -->
         <div class="spec"><span>Minecraft</span><b>1.21.1</b></div> <!-- Показываем версию Minecraft. -->
-        <div class="spec"><span>Loader</span><b>Fabric</b></div> <!-- Показываем загрузчик модов. -->
-        <div class="spec"><span>Platform</span><b>Windows</b></div> <!-- Показываем целевую платформу лаунчера. -->
-      </div> <!-- Закрываем список параметров. -->
-    </div> <!-- Закрываем карточку версии. -->
-  </section> <!-- Закрываем секцию совместимости. -->
-  <section class="section shell" id="faq"> <!-- Создаём секцию частых вопросов. -->
-    <div class="section-title"><h2>FAQ</h2><p>Коротко о текущей версии проекта.</p></div> <!-- Добавляем заголовок FAQ. -->
+        <div class="spec"><span>Loader</span><b>Fabric</b></div> <!-- Показываем загрузчик. -->
+        <div class="spec"><span>Platform</span><b>Windows</b></div> <!-- Показываем платформу. -->
+      </div> <!-- Закрываем техническую информацию. -->
+    </div> <!-- Закрываем карточку продукта. -->
+  </section> <!-- Закрываем главный экран. -->
+  <section class="section shell" id="about"> <!-- Создаём информационную секцию. -->
+    <h2>Как будет работать Laminari</h2> <!-- Добавляем заголовок секции. -->
+    <p>Лаунчер остаётся простым: проверяет клиент, показывает статус и запускает Minecraft. Настройки визуалов не дублируются ни на сайте, ни в лаунчере.</p> <!-- Объясняем архитектуру продукта. -->
+    <div class="info-grid"> <!-- Создаём три информационные карточки. -->
+      <article class="info"><div class="number">01</div><h3>Скачать</h3><p>Сайт выдаёт актуальную версию Laminari Launcher и информацию о совместимости.</p></article> <!-- Описываем роль сайта. -->
+      <article class="info"><div class="number">02</div><h3>Запустить</h3><p>Лаунчер проверяет нужные файлы и запускает Minecraft 1.21.1.</p></article> <!-- Описываем роль лаунчера. -->
+      <article class="info"><div class="number">03</div><h3>Настроить в игре</h3><p>Все Visuals, анимации и их параметры находятся только в интерфейсе самого мода.</p></article> <!-- Описываем роль игрового интерфейса. -->
+    </div> <!-- Закрываем информационную сетку. -->
+  </section> <!-- Закрываем информационную секцию. -->
+  <section class="section shell" id="download"> <!-- Создаём секцию загрузки. -->
+    <div class="download-box"> <!-- Создаём карточку загрузки. -->
+      <div><strong>Laminari Launcher</strong><div class="status">Windows x64 · Minecraft 1.21.1 · Fabric<br>Публичная сборка появится после проверки клиента.</div></div> <!-- Показываем информацию о будущем скачивании. -->
+      <span class="disabled">Скоро</span> <!-- Показываем неактивную кнопку вместо фальшивой загрузки. -->
+    </div> <!-- Закрываем карточку загрузки. -->
+  </section> <!-- Закрываем секцию загрузки. -->
+  <section class="section shell" id="faq"> <!-- Создаём FAQ. -->
+    <h2>FAQ</h2> <!-- Показываем заголовок FAQ. -->
     <div class="faq"> <!-- Открываем список вопросов. -->
-      <details><summary>Это отдельный Minecraft-клиент?</summary><p>Внутри игры Laminari Visuals будет работать как Fabric-мод, а отдельный Laminari Launcher будет отвечать за установку, обновления и запуск.</p></details> <!-- Добавляем первый вопрос. -->
-      <details><summary>Когда появится скачивание?</summary><p>После того как ViewModel и SwingAnimations будут собраны и проверены в Minecraft 1.21.1. Сайт не будет показывать фальшивую кнопку загрузки до готовой сборки.</p></details> <!-- Добавляем второй вопрос. -->
-      <details><summary>Будут ли новые визуалы?</summary><p>Да. Архитектура рассчитана на новые HUD-модули, эффекты, анимации и профили без полной переделки проекта.</p></details> <!-- Добавляем третий вопрос. -->
-    </div> <!-- Закрываем список FAQ. -->
-  </section> <!-- Закрываем секцию FAQ. -->
-</main> <!-- Закрываем главное содержимое страницы. -->
-<footer> <!-- Открываем нижнюю часть сайта. -->
-  <div class="shell">Laminari Visuals · Minecraft 1.21.1 Fabric · Development build</div> <!-- Показываем информацию о проекте. -->
-</footer> <!-- Закрываем нижнюю часть сайта. -->
-<script> // Открываем встроенный JavaScript сайта.
-document.querySelectorAll(".switch").forEach(function(button) { // Находим все демонстрационные переключатели модулей.
-  button.addEventListener("click", function() { // Добавляем обработчик нажатия на каждый переключатель.
-    button.classList.toggle("on"); // Переключаем визуальное состояние кнопки.
-  }); // Закрываем обработчик нажатия.
-}); // Закрываем перебор переключателей.
-</script> <!-- Закрываем встроенный JavaScript. -->
-</body> <!-- Закрываем видимую часть страницы. -->
+      <details><summary>Можно ли на сайте включать визуалы?</summary><p>Нет. Сайт только показывает информацию о Laminari Visuals и предоставляет загрузку клиента.</p></details> <!-- Объясняем назначение сайта. -->
+      <details><summary>Можно ли настраивать визуалы в лаунчере?</summary><p>Нет. Лаунчер занимается только установкой, проверкой обновлений и запуском Minecraft.</p></details> <!-- Объясняем назначение лаунчера. -->
+      <details><summary>Где будут настройки?</summary><p>Все настройки ViewModel, SwingAnimations и будущих визуалов будут находиться только внутри Minecraft.</p></details> <!-- Объясняем место настроек. -->
+    </div> <!-- Закрываем список вопросов. -->
+  </section> <!-- Закрываем FAQ. -->
+</main> <!-- Закрываем основное содержимое. -->
+<footer><div class="shell">Laminari Visuals · Minecraft 1.21.1 Fabric</div></footer> <!-- Добавляем нижнюю строку сайта. -->
+</body> <!-- Закрываем видимую часть сайта. -->
 </html> <!-- Закрываем HTML-документ. -->
